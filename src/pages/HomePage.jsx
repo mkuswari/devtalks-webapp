@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import CardThread from "../components/CardThread";
 import InputSearch from "../components/InputSearch";
 import ChipCategory from "../components/ChipCategory";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { asyncPopulateUsersAndThreads } from "../states/shared/action";
 
 const HomePage = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(asyncPopulateUsersAndThreads());
+  }, [dispatch]);
+
   return (
     <div className="container my-4">
       <div className="w-full flex flex-col md:flex-row items-start md:items-center justify-between">

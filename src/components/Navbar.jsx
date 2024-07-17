@@ -1,7 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
+  const authUser = useSelector((state) => state.authUser);
+
+  console.log(authUser);
+
   return (
     <header className="h-20 flex items-center bg-white border-b border-slate-200">
       <div className="container flex justify-between items-center">
