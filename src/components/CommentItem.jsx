@@ -1,7 +1,8 @@
 import React from "react";
 import { AiFillLike, AiOutlineDislike } from "react-icons/ai";
+import postedAt from "../utils/posted-at";
 
-const CommentItem = () => {
+const CommentItem = ({ content, owner, createdAt }) => {
   return (
     <div className="flex">
       <div className="p-2">
@@ -14,12 +15,10 @@ const CommentItem = () => {
       <div className="flex-1 p-2">
         <div className="rounded-md border border-slate-300 p-4">
           <p className="mb-3 text-sm text-slate-700">
-            <span className="font-bold">Messi</span>
-            <span> , 3 days ago</span>
+            <span className="font-bold">{owner?.name}</span>
+            <span> , {postedAt(createdAt)}</span>
           </p>
-          <div className="my-2 text-sm text-slate-500">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          </div>
+          <div className="my-2 text-sm text-slate-500" dangerouslySetInnerHTML={{__html: content}}/>
           <div className="inline-flex gap-4">
             <div className="flex items-center gap-1 text-slate-700 cursor-pointer">
               <AiFillLike />

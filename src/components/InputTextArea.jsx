@@ -9,6 +9,8 @@ const InputTextArea = ({ type, label, value, onChange, placeholder }) => {
       <textarea
         placeholder={placeholder}
         className="h-20 p-4 border border-slate-200 focus:outline-none rounded-xl focus:border-indigo-500 transition ease-in-out duration-150 text-sm"
+        value={value}
+        onChange={onChange}
       ></textarea>
     </div>
   );

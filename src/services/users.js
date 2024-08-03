@@ -7,7 +7,7 @@ async function registerUser({ name, email, password }) {
     password,
   });
 
-  return response.data;
+  return response.data.data;
 }
 
 async function loginUser({ email, password }) {
@@ -16,17 +16,17 @@ async function loginUser({ email, password }) {
     password,
   });
 
-  return response.data;
+  return response.data.data;
 }
 
 async function getAllUsers() {
   const response = await axiosInstance.get("/users");
-  return response.data;
+  return response.data.data;
 }
 
 async function getOwnProfile() {
   const response = await axiosInstance.get("/users/me");
-  return response.data;
+  return response.data.data;
 }
 
 export { registerUser, loginUser, getAllUsers, getOwnProfile };

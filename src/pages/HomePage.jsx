@@ -3,15 +3,26 @@ import CardThread from "../components/CardThread";
 import InputSearch from "../components/InputSearch";
 import ChipCategory from "../components/ChipCategory";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { asyncPopulateUsersAndThreads } from "../states/shared/action";
 
 const HomePage = () => {
+  const {
+    threads = [],
+    users = [],
+    authUser,
+  } = useSelector((states) => states);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(asyncPopulateUsersAndThreads());
   }, [dispatch]);
+
+  const threadList = threads.map((thread) => ({
+    ...thread,
+    threadOwner: users.find((user) => user.id === thread.ownerId),
+    // authUser: authUser.id,
+  }));
 
   return (
     <div className="container my-4">
@@ -25,19 +36,23 @@ const HomePage = () => {
             </span>
           </p>
         </div>
-        <div className="p-2">
-          <Link to="/new-thread">
-            <button className="px-6 py-3 text-white font-medium bg-indigo-500 rounded-2xl">
-              New Thread
-            </button>
-          </Link>
-        </div>
+        {authUser && (
+          <div className="p-2">
+            <Link to="/new-thread">
+              <button className="px-6 py-3 text-white font-medium bg-indigo-500 rounded-2xl">
+                New Thread
+              </button>
+            </Link>
+          </div>
+        )}
       </div>
       <div className="w-full max-w-5xl mt-8 mx-auto flex flex-col md:flex-row gap-8">
         <div className="flex-grow">
           <InputSearch />
           <div className="space-y-4 mt-4">
-            <CardThread />
+            {threadList.map((thread) => (
+              <CardThread key={thread.id} {...thread} />
+            ))}
           </div>
         </div>
         <div className="w-full md:w-1/4 flex-shrink-0">

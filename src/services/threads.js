@@ -6,17 +6,17 @@ async function createThread({ title, body, category }) {
     body,
     category,
   });
-  return response.data;
+  return response.data.data;
 }
 
 async function getAllThreads() {
   const response = await axiosInstance.get("/threads");
-  return response;
+  return response.data.data;
 }
 
 async function seeDetailThreads(id) {
   const response = await axiosInstance.get(`/threads/${id}`);
-  return response;
+  return response.data.data.detailThread;
 }
 
 export { createThread, getAllThreads, seeDetailThreads };

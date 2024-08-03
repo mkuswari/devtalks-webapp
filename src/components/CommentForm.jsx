@@ -1,6 +1,18 @@
 import React, { useState } from "react";
+import FroalaEditor from "react-froala-wysiwyg";
+import "froala-editor/css/froala_style.min.css";
+import "froala-editor/css/froala_editor.pkgd.min.css";
+import { useDispatch } from "react-redux";
+import { asyncCreateComment } from "../states/threadDetail/action";
 
 const CommentForm = () => {
+  const [content, setContent] = useState("");
+  const dispatch = useDispatch();
+
+  const onSubmitComment = () => {
+    dispatch(asyncCreateComment(content));
+  };
+
   return (
     <div className="flex">
       <div className="p-2">
@@ -11,11 +23,19 @@ const CommentForm = () => {
         />
       </div>
       <div className="flex-1 p-2">
-        <textarea
-          placeholder="Add a comment..."
-          className="w-full h-24 border border-slate-200 outline-none focus:outline-none p-4 rounded-xl text-sm text-slate-800"
-        ></textarea>
-        <button className="bg-indigo-600 text-white text-sm px-4 py-2 rounded-xl">
+        <div className="mb-3">
+          <FroalaEditor
+            model={content}
+            onModelChange={setContent}
+            config={{
+              placeholderText: "Write your comment",
+            }}
+          />
+        </div>
+        <button
+          onClick={onSubmitComment}
+          className="bg-indigo-600 text-white text-sm px-4 py-2 rounded-xl"
+        >
           Send
         </button>
       </div>
