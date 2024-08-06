@@ -6,10 +6,11 @@ import useInput from "../hooks/useInput";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { asyncSetAuthUser } from "../states/authUser/action";
+import toast from "react-hot-toast";
 
 const LoginPage = () => {
   const authUser = useSelector((state) => state.authUser);
-  
+
   const [email, onEmailChange] = useInput("");
   const [password, onPasswordChange] = useInput("");
 
@@ -23,6 +24,9 @@ const LoginPage = () => {
   }, [authUser, navigate]);
 
   const onLogin = () => {
+    if (email === "" || password === "") {
+      toast.error("Please fill in all fields");
+    }
     dispatch(asyncSetAuthUser({ email, password }));
   };
 

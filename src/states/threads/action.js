@@ -1,5 +1,9 @@
 import { createThread } from "../../services/threads";
-import { upVoteThread, downVoteThread } from "../../services/votes";
+import {
+  upVoteThread,
+  downVoteThread,
+  neutralizeThreadVote,
+} from "../../services/votes";
 
 const ActionType = {
   CREATE_THREAD: "CREATE_THREAD",
@@ -71,7 +75,9 @@ function asyncAddThread({ title, body, category = "all" }) {
 function asyncUpVoteThread(threadId) {
   return async (dispatch, getState) => {
     const { authUser } = getState();
-    dispatch(upVoteThreadActionCreator({ threadId, userId: authUser.id }));
+    dispatch(
+      upVoteThreadActionCreator({ threadId: threadId, userId: authUser.id })
+    );
     try {
       await upVoteThread(threadId);
     } catch (error) {
@@ -94,6 +100,20 @@ function asyncDownVoteThread(threadId) {
   };
 }
 
+function asyncNeutralizeVoteThread(threadId) {
+  return async (dispatch, getState) => {
+    const { authUser } = getState();
+    dispatch(
+      neutralizeVoteThreadActionCreator({ threadId, userId: authUser.id })
+    );
+    try {
+      await neutralizeThreadVote(threadId);
+    } catch (error) {
+      alert(error.response.data.message);
+    }
+  };
+}
+
 export {
   ActionType,
   addThreadActionCreator,
@@ -104,4 +124,5 @@ export {
   asyncAddThread,
   asyncUpVoteThread,
   asyncDownVoteThread,
+  asyncNeutralizeVoteThread,
 };

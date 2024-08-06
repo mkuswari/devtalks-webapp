@@ -10,18 +10,23 @@ import { asyncAddThread } from "../states/threads/action";
 import FroalaEditor from "react-froala-wysiwyg";
 import "froala-editor/css/froala_style.min.css";
 import "froala-editor/css/froala_editor.pkgd.min.css";
+import toast from "react-hot-toast";
 
 const NewThreadPage = () => {
   const [title, onTitleChange] = useInput("");
   const [category, onCategoryChange] = useInput("");
-
   const [body, setBody] = useState("");
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const onAddThread = () => {
+    if (title === "" || category === "" || body === "<div></div>") {
+      toast.error("Please fill in all fields");
+      return;
+    }
     dispatch(asyncAddThread({ title, body, category }));
+    toast.success("Thread created successfully");
     navigate("/");
   };
 

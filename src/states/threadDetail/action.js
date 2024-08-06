@@ -148,21 +148,19 @@ function asyncNeutralizeVoteThreadDetail() {
 }
 
 function asyncCreateComment({ content }) {
-  
   return async (dispatch, getState) => {
     dispatch(showLoading());
     const { threadDetail } = getState();
     try {
-      const comment = await createComment({
+      const { comment } = await createComment({
         content,
         threadId: threadDetail.id,
       });
-      console.log(comment);
-      
-      // dispatch(createCommentActionCreator(comment));
+      dispatch(createCommentActionCreator(comment));
     } catch (error) {
       alert(error.response.data.message);
     }
+    dispatch(hideLoading());
   };
 }
 

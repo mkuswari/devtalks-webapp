@@ -13,6 +13,7 @@ import AuthLayout from "./layouts/AuthLayout";
 import { useSelector, useDispatch } from "react-redux";
 import { asyncIsPreloadProcess } from "./states/isPreload/action";
 import Loading from "./components/Loading";
+import { Toaster } from "react-hot-toast";
 
 const App = () => {
   const { authUser = null, isPreload = false } = useSelector(
@@ -44,6 +45,7 @@ const App = () => {
           <Route path="/leaderboard" element={<LeaderboardPage />} />
         </Route>
       </Routes>
+      <Toaster />
     </>
   );
 };

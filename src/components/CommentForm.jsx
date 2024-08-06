@@ -2,15 +2,18 @@ import React, { useState } from "react";
 import FroalaEditor from "react-froala-wysiwyg";
 import "froala-editor/css/froala_style.min.css";
 import "froala-editor/css/froala_editor.pkgd.min.css";
-import { useDispatch } from "react-redux";
-import { asyncCreateComment } from "../states/threadDetail/action";
+import PropTypes from "prop-types";
+import toast from "react-hot-toast";
 
-const CommentForm = () => {
+const CommentForm = ({ onAddComment }) => {
   const [content, setContent] = useState("");
-  const dispatch = useDispatch();
 
   const onSubmitComment = () => {
-    dispatch(asyncCreateComment(content));
+    if (content === "<div></div>") {
+      toast.error("Please fill in comment");
+      return;
+    }
+    onAddComment(content);
   };
 
   return (
@@ -44,3 +47,7 @@ const CommentForm = () => {
 };
 
 export default CommentForm;
+
+CommentForm.propTypes = {
+  onAddComment: PropTypes.func.isRequired,
+};

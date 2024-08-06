@@ -5,7 +5,7 @@ async function createComment({ threadId, content }) {
     const response = await axiosInstance.post(`/threads/${threadId}/comments`, {
       content,
     });
-    return response;
+    return response.data.data;
   } catch (error) {
     console.log(error);
   }

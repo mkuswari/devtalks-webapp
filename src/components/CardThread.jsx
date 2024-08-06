@@ -1,15 +1,9 @@
 import React from "react";
-import {
-  AiFillLike,
-  AiOutlineLike,
-  AiFillDislike,
-  AiOutlineDislike,
-} from "react-icons/ai";
-import { FaComment } from "react-icons/fa";
 import ChipCategory from "./ChipCategory";
-import parse from "html-react-parser";
 import postedAt from "../utils/posted-at";
 import { useNavigate } from "react-router-dom";
+import ActionVote from "./ActionVote";
+import PropTypes from "prop-types";
 
 const CardThread = ({
   id,
@@ -19,6 +13,13 @@ const CardThread = ({
   createdAt,
   title,
   body,
+  upVotesBy,
+  downVotesBy,
+  totalComments,
+  onUpVoteThread,
+  onDownVoteThread,
+  onNeutralizeVoteThread,
+  showCommentStats,
 }) => {
   const navigate = useNavigate();
 
@@ -50,7 +51,7 @@ const CardThread = ({
           {title}
         </h1>
         <div className="inline-flex gap-1 mt-2">
-          <ChipCategory name={category} />
+          <ChipCategory name={category} activeCategory />
         </div>
         <div
           className="my-4 text-slate-500 text-sm"
@@ -58,23 +59,36 @@ const CardThread = ({
         />
       </div>
       <div className="mt-3">
-        <div className="inline-flex gap-4">
-          <div className="flex items-center gap-1 text-slate-700 cursor-pointer">
-            <AiFillLike />
-            <span className="text-sm">1</span>
-          </div>
-          <div className="flex items-center gap-1 text-slate-700 cursor-pointer">
-            <AiOutlineDislike />
-            <span className="text-sm">0</span>
-          </div>
-          <div className="flex items-center gap-1 text-slate-700 cursor-pointer">
-            <FaComment />
-            <span className="text-sm">2</span>
-          </div>
-        </div>
+        <ActionVote
+          threadId={id}
+          upVotesBy={upVotesBy}
+          downVotesBy={downVotesBy}
+          countComments={totalComments}
+          onUpVoteThread={onUpVoteThread}
+          onDownVoteThread={onDownVoteThread}
+          onNeutralizeVoteThread={onNeutralizeVoteThread}
+          showCommentStats={showCommentStats}
+        />
       </div>
     </article>
   );
 };
 
 export default CardThread;
+
+CardThread.propTypes = {
+  id: PropTypes.string.isRequired,
+  threadOwner: PropTypes.object.isRequired,
+  owner: PropTypes.object.isRequired,
+  category: PropTypes.string.isRequired,
+  createdAt: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  body: PropTypes.string.isRequired,
+  upVotesBy: PropTypes.array.isRequired,
+  downVotesBy: PropTypes.array.isRequired,
+  totalComments: PropTypes.array.isRequired,
+  onUpVoteThread: PropTypes.func.isRequired,
+  onDownVoteThread: PropTypes.func.isRequired,
+  onNeutralizeVoteThread: PropTypes.func.isRequired,
+  showCommentStats: PropTypes.bool.isRequired,
+};

@@ -32,7 +32,7 @@ async function neutralizeThreadVote(threadId) {
 async function upVoteComment(threadId, commentId) {
   try {
     const response = await axiosInstance.post(
-      `/threads/${threadId}/comment/${commentId}/up-vote`
+      `/threads/${threadId}/comments/${commentId}/up-vote`
     );
     return response;
   } catch (error) {
@@ -43,7 +43,7 @@ async function upVoteComment(threadId, commentId) {
 async function downVoteComment(threadId, commentId) {
   try {
     const response = await axiosInstance.post(
-      `/threads/${threadId}/comment/${commentId}/down-vote`
+      `/threads/${threadId}/comments/${commentId}/down-vote`
     );
     return response;
   } catch (error) {
@@ -54,7 +54,7 @@ async function downVoteComment(threadId, commentId) {
 async function neutralizeCommentVote(threadId, commentId) {
   try {
     const response = await axiosInstance.post(
-      `/threads/${threadId}/comment/${commentId}/neutral-vote`
+      `/threads/${threadId}/comments/${commentId}/neutral-vote`
     );
     return response;
   } catch (error) {

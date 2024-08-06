@@ -6,6 +6,7 @@ import useInput from "../hooks/useInput";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { asyncRegisterUser } from "../states/users/action";
+import toast from "react-hot-toast";
 
 const RegisterPage = () => {
   const authUser = useSelector((state) => state.authUser);
@@ -25,9 +26,18 @@ const RegisterPage = () => {
   }, [authUser, navigate]);
 
   const onRegister = () => {
-    if(password !== passwordConfirm) {
-      alert("Password and Password Confirmation must be same");
-      return
+    if (password !== passwordConfirm) {
+      toast.error("Password and password confirm must same");
+      return;
+    }
+    if (
+      name === "" ||
+      email === "" ||
+      password === "" ||
+      passwordConfirm === ""
+    ) {
+      toast.error("Please fill in all fields");
+      return;
     }
     dispatch(asyncRegisterUser({ name, email, password }));
     navigate("/login");

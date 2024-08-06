@@ -1,8 +1,29 @@
 import React from "react";
-import { AiFillLike, AiOutlineDislike } from "react-icons/ai";
+import {
+  AiFillDislike,
+  AiFillLike,
+  AiOutlineDislike,
+  AiOutlineLike,
+} from "react-icons/ai";
 import postedAt from "../utils/posted-at";
+import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
 
-const CommentItem = ({ content, owner, createdAt }) => {
+const CommentItem = ({
+  content,
+  owner,
+  createdAt,
+  upVotesBy,
+  downVotesBy,
+  onUpVote,
+  onDownVote,
+  onNeutralizeVote,
+}) => {
+  const { authUser = null } = useSelector((states) => states);
+
+  const upVote = upVotesBy?.includes(authUser?.id);
+  const downVote = downVotesBy?.includes(authUser?.id);
+
   return (
     <div className="flex">
       <div className="p-2">
@@ -18,15 +39,24 @@ const CommentItem = ({ content, owner, createdAt }) => {
             <span className="font-bold">{owner?.name}</span>
             <span> , {postedAt(createdAt)}</span>
           </p>
-          <div className="my-2 text-sm text-slate-500" dangerouslySetInnerHTML={{__html: content}}/>
+          <div
+            className="my-2 text-sm text-slate-500"
+            dangerouslySetInnerHTML={{ __html: content }}
+          />
           <div className="inline-flex gap-4">
-            <div className="flex items-center gap-1 text-slate-700 cursor-pointer">
-              <AiFillLike />
-              <span className="text-sm">1</span>
+            <div
+              className="flex items-center gap-1 text-slate-700 cursor-pointer"
+              onClick={upVote ? onNeutralizeVote : onUpVote}
+            >
+              {upVote ? <AiFillLike /> : <AiOutlineLike />}
+              <span className="text-sm">{upVotesBy?.length}</span>
             </div>
-            <div className="flex items-center gap-1 text-slate-700 cursor-pointer">
-              <AiOutlineDislike />
-              <span className="text-sm">0</span>
+            <div
+              className="flex items-center gap-1 text-slate-700 cursor-pointer"
+              onClick={downVote ? onNeutralizeVote : onDownVote}
+            >
+              {downVote ? <AiFillDislike /> : <AiOutlineDislike />}
+              <span className="text-sm">{downVotesBy?.length}</span>
             </div>
           </div>
         </div>
@@ -36,3 +66,15 @@ const CommentItem = ({ content, owner, createdAt }) => {
 };
 
 export default CommentItem;
+
+CommentItem.propTypes = {
+  content: PropTypes.string.isRequired,
+  owner: PropTypes.object.isRequired,
+  createdAt: PropTypes.string.isRequired,
+  upVotesBy: PropTypes.array.isRequired,
+  downVotesBy: PropTypes.array.isRequired,
+  totalComments: PropTypes.number.isRequired,
+  onUpVote: PropTypes.func.isRequired,
+  onDownVote: PropTypes.func.isRequired,
+  onNeutralizeVote: PropTypes.func.isRequired,
+};
