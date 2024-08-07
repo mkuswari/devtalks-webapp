@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
-import InputSearch from "../components/InputSearch";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import InputSearch from "../components/InputSearch";
 import { asyncPopulateUsersAndThreads } from "../states/shared/action";
 import {
   asyncDownVoteThread,
@@ -49,7 +49,6 @@ const HomePage = () => {
     }));
 
   const handleUpVoteThread = (id) => {
-    console.log(id);
     dispatch(asyncUpVoteThread(id));
   };
 

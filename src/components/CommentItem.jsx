@@ -1,4 +1,5 @@
-import React from "react";
+import { useSelector } from "react-redux";
+import PropTypes from "prop-types";
 import {
   AiFillDislike,
   AiFillLike,
@@ -6,8 +7,6 @@ import {
   AiOutlineLike,
 } from "react-icons/ai";
 import postedAt from "../utils/posted-at";
-import PropTypes from "prop-types";
-import { useSelector } from "react-redux";
 
 const CommentItem = ({
   content,
@@ -73,7 +72,6 @@ CommentItem.propTypes = {
   createdAt: PropTypes.string.isRequired,
   upVotesBy: PropTypes.array.isRequired,
   downVotesBy: PropTypes.array.isRequired,
-  totalComments: PropTypes.number.isRequired,
   onUpVote: PropTypes.func.isRequired,
   onDownVote: PropTypes.func.isRequired,
   onNeutralizeVote: PropTypes.func.isRequired,

@@ -1,5 +1,5 @@
-import React from "react";
 import { IoChevronBack } from "react-icons/io5";
+import PropTypes from "prop-types";
 
 const ActionBack = ({ navigate }) => {
   return (
@@ -14,3 +14,7 @@ const ActionBack = ({ navigate }) => {
 };
 
 export default ActionBack;
+
+ActionBack.propTypes = {
+  navigate: PropTypes.func.isRequired,
+};

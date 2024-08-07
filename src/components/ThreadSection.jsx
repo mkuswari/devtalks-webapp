@@ -1,6 +1,5 @@
-import React from "react";
-import CardThread from "./CardThread";
 import PropTypes from "prop-types";
+import CardThread from "./CardThread";
 
 const ThreadSection = ({
   threadList,
@@ -17,7 +16,7 @@ const ThreadSection = ({
           onDownVoteThread={() => handleDownVoteThread(thread.id)}
           onUpVoteThread={() => handleUpVoteThread(thread.id)}
           onNeutralizeVoteThread={() => handleNeutralizeVoteThread(thread.id)}
-          showCommentStats={true}
+          showCommentStats
         />
       ))}
     </div>
@@ -25,6 +24,13 @@ const ThreadSection = ({
 };
 
 export default ThreadSection;
+
+ThreadSection.defaultProps = {
+  threadList: [],
+  handleUpVoteThread: () => {},
+  handleDownVoteThread: () => {},
+  handleNeutralizeVoteThread: () => {},
+};
 
 ThreadSection.propTypes = {
   threadList: PropTypes.arrayOf(PropTypes.object),

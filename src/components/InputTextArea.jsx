@@ -1,6 +1,6 @@
-import React from "react";
+import PropTypes from "prop-types";
 
-const InputTextArea = ({ type, label, value, onChange, placeholder }) => {
+const InputTextArea = ({ label, value, onChange, placeholder }) => {
   return (
     <div className="flex flex-col gap-1">
       <label htmlFor={label} className="text-sm font-semibold text-slate-700">
@@ -17,3 +17,10 @@ const InputTextArea = ({ type, label, value, onChange, placeholder }) => {
 };
 
 export default InputTextArea;
+
+InputTextArea.propTypes = {
+  label: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  placeholder: PropTypes.string.isRequired,
+};

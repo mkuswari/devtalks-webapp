@@ -1,4 +1,3 @@
-import React from "react";
 import { FaGithub } from "react-icons/fa";
 
 const Footer = () => {
@@ -11,7 +10,10 @@ const Footer = () => {
           Reserved
         </p>
         <div>
-          <a href="" className="text-white">
+          <a
+            href="https://github.com/mkuswari/devtalks-webapp"
+            className="text-white"
+          >
             <FaGithub className="w-10 h-10" />
           </a>
         </div>

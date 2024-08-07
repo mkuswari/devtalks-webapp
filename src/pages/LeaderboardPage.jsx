@@ -1,7 +1,7 @@
-import React, { useEffect, useRef } from "react";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { IoMdRefresh } from "react-icons/io";
 import CardLeaderUser from "../components/CardLeaderUser";
-import { useSelector, useDispatch } from "react-redux";
 import { asyncReceiveLeaderboardsActionCreator } from "../states/leaderboard/action";
 
 const LeaderboardPage = () => {

@@ -9,13 +9,15 @@ export default function postedAt(date) {
 
   if (dateDifferentInDays > 0) {
     return `${dateDifferentInDays} hari yang lalu`;
-  } else if (dateDifferentInHours > 0) {
-    return `${dateDifferentInHours} jam yang lalu`;
-  } else if (dateDifferentInMinutes > 0) {
-    return `${dateDifferentInMinutes} menit yang lalu`;
-  } else if (dateDifferentInSeconds > 0) {
-    return `${dateDifferentInSeconds} detik yang lalu`;
-  } else {
-    return "baru saja";
   }
+  if (dateDifferentInHours > 0) {
+    return `${dateDifferentInHours} jam yang lalu`;
+  }
+  if (dateDifferentInMinutes > 0) {
+    return `${dateDifferentInMinutes} menit yang lalu`;
+  }
+  if (dateDifferentInSeconds > 0) {
+    return `${dateDifferentInSeconds} detik yang lalu`;
+  }
+  return "baru saja";
 }

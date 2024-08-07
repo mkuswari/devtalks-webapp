@@ -1,12 +1,11 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import toast from "react-hot-toast";
 import InputField from "../components/InputField";
 import Button from "../components/Button";
-import { Link } from "react-router-dom";
 import useInput from "../hooks/useInput";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { asyncRegisterUser } from "../states/users/action";
-import toast from "react-hot-toast";
 
 const RegisterPage = () => {
   const authUser = useSelector((state) => state.authUser);

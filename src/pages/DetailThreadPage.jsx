@@ -1,9 +1,8 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import CardThread from "../components/CardThread";
 import CardUserInfo from "../components/CardUserInfo";
-import CommentItem from "../components/CommentItem";
-import CommentForm from "../components/CommentForm";
-import { Link, useNavigate, useParams } from "react-router-dom";
 import ActionBack from "../components/ActionBack";
 import {
   asyncReceiveThreadDetail,
@@ -15,14 +14,11 @@ import {
   asyncNeutralizeVoteComment,
   asyncCreateComment,
 } from "../states/threadDetail/action";
-import { useDispatch, useSelector } from "react-redux";
 import { CommentSection, HeaderTitle } from "../components";
 
 const DetailThreadPage = () => {
   const { id } = useParams();
   const { threadDetail = null, authUser } = useSelector((states) => states);
-
-  console.log(threadDetail);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -31,33 +27,32 @@ const DetailThreadPage = () => {
     dispatch(asyncReceiveThreadDetail(id));
   }, [id, dispatch]);
 
-  const handleUpVoteThread = (id) => {
-    console.log(id);
-    dispatch(asyncUpVoteThreadDetail(id));
+  const handleUpVoteThread = (threadId) => {
+    dispatch(asyncUpVoteThreadDetail(threadId));
   };
 
-  const handleDownVoteThread = (id) => {
-    dispatch(asyncDownVoteThreadDetail(id));
+  const handleDownVoteThread = (threadId) => {
+    dispatch(asyncDownVoteThreadDetail(threadId));
   };
 
-  const handleNeutralizeVoteThread = (id) => {
-    dispatch(asyncNeutralizeVoteThreadDetail(id));
+  const handleNeutralizeVoteThread = (threadId) => {
+    dispatch(asyncNeutralizeVoteThreadDetail(threadId));
   };
 
   const handleSubmitComment = (content) => {
     dispatch(asyncCreateComment({ content }));
   };
 
-  const handleUpVoteComment = (id) => {
-    dispatch(asyncUpVoteComment(id));
+  const handleUpVoteComment = (commentId) => {
+    dispatch(asyncUpVoteComment(commentId));
   };
 
-  const handleDownVoteComment = (id) => {
-    dispatch(asyncDownComment(id));
+  const handleDownVoteComment = (commentId) => {
+    dispatch(asyncDownComment(commentId));
   };
 
-  const handleNeutralizeVoteComment = (id) => {
-    dispatch(asyncNeutralizeVoteComment(id));
+  const handleNeutralizeVoteComment = (commentId) => {
+    dispatch(asyncNeutralizeVoteComment(commentId));
   };
 
   return (

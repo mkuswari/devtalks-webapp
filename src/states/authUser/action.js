@@ -1,6 +1,9 @@
-import { loginUser, getOwnProfile } from "../../services/users";
-import { removeDataFromLocalStorage, setTokenToLocalStorage } from "../../utils/storage";
 import { showLoading, hideLoading } from "react-redux-loading-bar";
+import { loginUser, getOwnProfile } from "../../services/users";
+import {
+  removeDataFromLocalStorage,
+  setTokenToLocalStorage,
+} from "../../utils/storage";
 
 const ActionType = {
   SET_AUTH_USER: "SET_AUTH_USER",
@@ -8,7 +11,6 @@ const ActionType = {
 };
 
 function setAuthUserActionCreator(authUser) {
-  // console.log(authUser);
   return {
     type: ActionType.SET_AUTH_USER,
     payload: {
@@ -25,7 +27,7 @@ function unsetAuthUserActionCreator() {
 
 function asyncSetAuthUser({ email, password }) {
   return async (dispatch) => {
-    dispatch(showLoading())
+    dispatch(showLoading());
     try {
       const { token } = await loginUser({ email, password });
       setTokenToLocalStorage(token);
@@ -34,14 +36,14 @@ function asyncSetAuthUser({ email, password }) {
     } catch (error) {
       alert(error.response.data.message);
     }
-    dispatch(hideLoading())
+    dispatch(hideLoading());
   };
 }
 
 function asyncUnsetAuthUser() {
   return async (dispatch) => {
     dispatch(unsetAuthUserActionCreator());
-    removeDataFromLocalStorage('TOKEN');
+    removeDataFromLocalStorage("TOKEN");
   };
 }
 

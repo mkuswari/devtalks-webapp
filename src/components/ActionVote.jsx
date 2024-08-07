@@ -1,4 +1,3 @@
-import React from "react";
 import {
   AiFillDislike,
   AiFillLike,
@@ -52,7 +51,6 @@ const ActionVote = ({
 export default ActionVote;
 
 ActionVote.propTypes = {
-  threadId: PropTypes.string.isRequired,
   upVotesBy: PropTypes.array.isRequired,
   downVotesBy: PropTypes.array.isRequired,
   countComments: PropTypes.number.isRequired,

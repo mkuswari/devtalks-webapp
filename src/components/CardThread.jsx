@@ -1,9 +1,8 @@
-import React from "react";
+import { useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
 import ChipCategory from "./ChipCategory";
 import postedAt from "../utils/posted-at";
-import { useNavigate } from "react-router-dom";
 import ActionVote from "./ActionVote";
-import PropTypes from "prop-types";
 
 const CardThread = ({
   id,
@@ -33,6 +32,7 @@ const CardThread = ({
         <img
           src={threadOwner?.avatar || owner?.avatar}
           className="w-10 h-10 rounded-full"
+          alt="Avatar User"
         />
         <div>
           <span className="block font-bold text-sm">

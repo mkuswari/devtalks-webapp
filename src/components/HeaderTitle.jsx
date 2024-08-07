@@ -1,4 +1,4 @@
-import React from "react";
+import PropTypes from "prop-types";
 
 const HeaderTitle = ({ title, subTitle }) => {
   return (
@@ -16,3 +16,13 @@ const HeaderTitle = ({ title, subTitle }) => {
 };
 
 export default HeaderTitle;
+
+HeaderTitle.defaultProps = {
+  title: "",
+  subTitle: "",
+};
+
+HeaderTitle.propTypes = {
+  title: PropTypes.string,
+  subTitle: PropTypes.string,
+};

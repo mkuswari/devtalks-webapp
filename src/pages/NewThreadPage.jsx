@@ -1,16 +1,15 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import toast from "react-hot-toast";
+import FroalaEditor from "react-froala-wysiwyg";
 import InputField from "../components/InputField";
-import InputTextArea from "../components/InputTextArea";
 import Button from "../components/Button";
 import ActionBack from "../components/ActionBack";
-import { useNavigate } from "react-router-dom";
 import useInput from "../hooks/useInput";
-import { useDispatch } from "react-redux";
 import { asyncAddThread } from "../states/threads/action";
-import FroalaEditor from "react-froala-wysiwyg";
 import "froala-editor/css/froala_style.min.css";
 import "froala-editor/css/froala_editor.pkgd.min.css";
-import toast from "react-hot-toast";
 
 const NewThreadPage = () => {
   const [title, onTitleChange] = useInput("");

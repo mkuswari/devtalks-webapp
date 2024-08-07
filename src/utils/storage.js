@@ -12,7 +12,7 @@ const getDataFromLocalStorage = (key) => {
 
     return JSON.parse(data);
   } catch (error) {
-    console.log(error);
+    alert(error);
   }
   return null;
 };

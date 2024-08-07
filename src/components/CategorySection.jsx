@@ -1,6 +1,5 @@
-import React from "react";
-import ChipCategory from "./ChipCategory";
 import PropTypes from "prop-types";
+import ChipCategory from "./ChipCategory";
 
 const CategorySection = ({
   categories,
@@ -14,11 +13,11 @@ const CategorySection = ({
       </h3>
       <div className="mt-2">
         <div className="flex flex-wrap gap-2">
-          {Array.from(categories).map((category, index) => {
+          {Array.from(categories).map((category) => {
             const isSelected = category === selectedCategory;
             return (
               <ChipCategory
-                key={index}
+                key={category}
                 name={category}
                 activeCategory={isSelected}
                 onClick={() => onCategoryChange(category)}

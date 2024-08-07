@@ -1,8 +1,7 @@
-import React from "react";
+import PropTypes from "prop-types";
 import CommentForm from "./CommentForm";
 import LoginMessage from "./LoginMessage";
 import CommentItem from "./CommentItem";
-import PropTypes from "prop-types";
 
 const CommentSection = ({
   threadDetail,
@@ -26,11 +25,11 @@ const CommentSection = ({
         {threadDetail?.comments?.map((comment) => {
           return (
             <CommentItem
-              key={comment.id}
+              key={comment?.id}
               {...comment}
-              onUpVote={() => onUpVoteComment(comment.id)}
-              onDownVote={() => onDownVoteComment(comment.id)}
-              onNeutralizeVote={() => onNeutralizeVoteComment(comment.id)}
+              onUpVote={() => onUpVoteComment(comment?.id)}
+              onDownVote={() => onDownVoteComment(comment?.id)}
+              onNeutralizeVote={() => onNeutralizeVoteComment(comment?.id)}
             />
           );
         })}

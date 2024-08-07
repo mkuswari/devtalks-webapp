@@ -1,7 +1,6 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { asyncUnsetAuthUser } from "../states/authUser/action";
 
 const Navbar = () => {
@@ -15,7 +14,6 @@ const Navbar = () => {
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
   };
-
 
   const handleLogout = () => {
     dispatch(asyncUnsetAuthUser());

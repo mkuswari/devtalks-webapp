@@ -1,3 +1,4 @@
+import { hideLoading, showLoading } from "react-redux-loading-bar";
 import { createThread } from "../../services/threads";
 import {
   upVoteThread,
@@ -63,32 +64,37 @@ function neutralizeVoteThreadActionCreator({ threadId, userId }) {
 
 function asyncAddThread({ title, body, category = "all" }) {
   return async (dispatch) => {
+    dispatch(showLoading());
     try {
       const thread = await createThread({ title, body, category });
       dispatch(addThreadActionCreator(thread));
     } catch (error) {
       alert(error.response.data.message);
     }
+    dispatch(hideLoading());
   };
 }
 
 function asyncUpVoteThread(threadId) {
   return async (dispatch, getState) => {
     const { authUser } = getState();
+    dispatch(showLoading());
     dispatch(
       upVoteThreadActionCreator({ threadId: threadId, userId: authUser.id })
     );
     try {
       await upVoteThread(threadId);
     } catch (error) {
-      console.log(error.response.data.message);
+      alert(error.response.data.message);
     }
+    dispatch(hideLoading());
   };
 }
 
 function asyncDownVoteThread(threadId) {
   return async (dispatch, getState) => {
     const { authUser } = getState();
+    dispatch(showLoading());
     dispatch(
       downVoteThreadActionCreator({ threadId: threadId, userId: authUser.id })
     );
@@ -97,12 +103,14 @@ function asyncDownVoteThread(threadId) {
     } catch (error) {
       alert(error.response.data.message);
     }
+    dispatch(hideLoading());
   };
 }
 
 function asyncNeutralizeVoteThread(threadId) {
   return async (dispatch, getState) => {
     const { authUser } = getState();
+    dispatch(showLoading());
     dispatch(
       neutralizeVoteThreadActionCreator({ threadId, userId: authUser.id })
     );
@@ -111,6 +119,7 @@ function asyncNeutralizeVoteThread(threadId) {
     } catch (error) {
       alert(error.response.data.message);
     }
+    dispatch(hideLoading());
   };
 }
 

@@ -1,5 +1,7 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { Toaster } from "react-hot-toast";
 import {
   DetailThreadPage,
   HomePage,
@@ -10,15 +12,11 @@ import {
 } from "./pages";
 import MainLayout from "./layouts/MainLayout";
 import AuthLayout from "./layouts/AuthLayout";
-import { useSelector, useDispatch } from "react-redux";
 import { asyncIsPreloadProcess } from "./states/isPreload/action";
 import Loading from "./components/Loading";
-import { Toaster } from "react-hot-toast";
 
 const App = () => {
-  const { authUser = null, isPreload = false } = useSelector(
-    (states) => states
-  );
+  const { isPreload = false } = useSelector((states) => states);
 
   const dispatch = useDispatch();
 
