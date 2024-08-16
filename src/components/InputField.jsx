@@ -1,14 +1,6 @@
 import PropTypes from "prop-types";
 
-const InputField = ({
-  type,
-  label,
-  value,
-  onChange,
-  placeholder,
-  isError,
-  errorMessage,
-}) => {
+const InputField = ({ type, label, value, onChange, placeholder }) => {
   return (
     <div className="flex flex-col gap-1">
       <label htmlFor={label} className="text-sm font-semibold text-slate-700">
@@ -21,7 +13,6 @@ const InputField = ({
         value={value}
         onChange={onChange}
       />
-      {isError && <p className="text-xs text-red-500">{errorMessage}</p>}
     </div>
   );
 };
@@ -34,6 +25,4 @@ InputField.propTypes = {
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   placeholder: PropTypes.string.isRequired,
-  isError: PropTypes.bool.isRequired,
-  errorMessage: PropTypes.string.isRequired,
 };

@@ -18,6 +18,8 @@ import CategorySection from "./CategorySection";
 import ThreadSection from "./ThreadSection";
 import LoginMessage from "./LoginMessage";
 import CommentSection from "./CommentSection";
+import LoginForm from "./LoginForm";
+import RegisterForm from "./RegisterForm";
 
 export {
   ActionBack,
@@ -40,4 +42,6 @@ export {
   ThreadSection,
   LoginMessage,
   CommentSection,
+  LoginForm,
+  RegisterForm,
 };
