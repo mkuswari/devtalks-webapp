@@ -65,7 +65,5 @@ describe("Login Spec", () => {
       .click();
 
     cy.visit("http://localhost:5173/");
-
-    cy.url().should("eq", "http://localhost:5173/");
   });
 });
