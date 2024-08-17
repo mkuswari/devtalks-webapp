@@ -28,30 +28,51 @@ const DetailThreadPage = () => {
   }, [id, dispatch]);
 
   const handleUpVoteThread = (threadId) => {
+    if (!authUser) {
+      navigate("/login");
+    }
     dispatch(asyncUpVoteThreadDetail(threadId));
   };
 
   const handleDownVoteThread = (threadId) => {
+    if (!authUser) {
+      navigate("/login");
+    }
     dispatch(asyncDownVoteThreadDetail(threadId));
   };
 
   const handleNeutralizeVoteThread = (threadId) => {
+    if (!authUser) {
+      navigate("/login");
+    }
     dispatch(asyncNeutralizeVoteThreadDetail(threadId));
   };
 
   const handleSubmitComment = (content) => {
+    if (!authUser) {
+      navigate("/login");
+    }
     dispatch(asyncCreateComment({ content }));
   };
 
   const handleUpVoteComment = (commentId) => {
+    if (!authUser) {
+      navigate("/login");
+    }
     dispatch(asyncUpVoteComment(commentId));
   };
 
   const handleDownVoteComment = (commentId) => {
+    if (!authUser) {
+      navigate("/login");
+    }
     dispatch(asyncDownComment(commentId));
   };
 
   const handleNeutralizeVoteComment = (commentId) => {
+    if (!authUser) {
+      navigate("/login");
+    }
     dispatch(asyncNeutralizeVoteComment(commentId));
   };
 

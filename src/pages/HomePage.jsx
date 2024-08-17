@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import InputSearch from "../components/InputSearch";
 import { asyncPopulateUsersAndThreads } from "../states/shared/action";
 import {
@@ -30,6 +31,7 @@ const HomePage = () => {
   ] = useSearch();
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const categories = new Set(threads.map((thread) => thread.category));
 
@@ -49,14 +51,23 @@ const HomePage = () => {
     }));
 
   const handleUpVoteThread = (id) => {
+    if (!authUser) {
+      navigate("/login");
+    }
     dispatch(asyncUpVoteThread(id));
   };
 
   const handleDownVoteThread = (id) => {
+    if (!authUser) {
+      navigate("/login");
+    }
     dispatch(asyncDownVoteThread(id));
   };
 
   const handleNeutralizeVoteThread = (id) => {
+    if (!authUser) {
+      navigate("/login");
+    }
     dispatch(asyncNeutralizeVoteThread(id));
   };
 
