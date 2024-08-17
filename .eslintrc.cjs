@@ -52,5 +52,6 @@ module.exports = {
     "import/prefer-default-export": "off",
     "no-alert": "off",
     "object-shorthand": "off",
+    "no-unused-vars": "off",
   },
 };
