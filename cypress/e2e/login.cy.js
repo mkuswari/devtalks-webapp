@@ -59,11 +59,14 @@ describe("Login Spec", () => {
 
   it("should display homepage when email and password are correct", () => {
     cy.get("input[placeholder='Input your email']").type("satoshi@mail.com");
-    cy.get("input[placeholder='Input your password']").type("asdasdsad");
+    cy.get("input[placeholder='Input your password']").type("asdasdasd");
     cy.get("button")
       .contains(/^Login$/)
       .click();
 
-    cy.visit("http://localhost:5173/");
+    cy.url().should("eq", "http://localhost:5173/");
+
+    cy.get("img[alt='User Avatar']").should("be.visible");
+    cy.get("button").contains("New Thread").should("be.visible");
   });
 });
