@@ -113,7 +113,7 @@ function asyncUpVoteThreadDetail() {
   return async (dispatch, getState) => {
     const { threadDetail, authUser } = getState();
     dispatch(showLoading());
-    dispatch(upVoteThreadDetailActionCreator(authUser.id));
+    dispatch(upVoteThreadDetailActionCreator(authUser?.id));
     try {
       await upVoteThread(threadDetail.id);
     } catch (error) {
@@ -127,7 +127,7 @@ function asyncDownVoteThreadDetail() {
   return async (dispatch, getState) => {
     const { threadDetail, authUser } = getState();
     dispatch(showLoading());
-    dispatch(downVoteThreadDetailActionCreator(authUser.id));
+    dispatch(downVoteThreadDetailActionCreator(authUser?.id));
     try {
       await downVoteThread(threadDetail.id);
     } catch (error) {
@@ -141,7 +141,7 @@ function asyncNeutralizeVoteThreadDetail() {
   return async (dispatch, getState) => {
     const { threadDetail, authUser } = getState();
     dispatch(showLoading());
-    dispatch(neutralizeThreadDetailActionCreator(authUser.id));
+    dispatch(neutralizeThreadDetailActionCreator(authUser?.id));
     try {
       await neutralizeThreadVote(threadDetail.id);
     } catch (error) {
@@ -171,7 +171,7 @@ function asyncCreateComment({ content }) {
 function asyncUpVoteComment(commentId) {
   return async (dispatch, getState) => {
     const { authUser, threadDetail } = getState();
-    dispatch(upVoteCommentActionCreator(commentId, authUser.id));
+    dispatch(upVoteCommentActionCreator(commentId, authUser?.id));
     dispatch(showLoading());
     try {
       await upVoteComment(threadDetail.id, commentId);
@@ -186,7 +186,7 @@ function asyncDownComment(commentId) {
   return async (dispatch, getState) => {
     const { authUser, threadDetail } = getState();
     dispatch(showLoading());
-    dispatch(downVoteCommentActionCreator(commentId, authUser.id));
+    dispatch(downVoteCommentActionCreator(commentId, authUser?.id));
     try {
       await downVoteComment(threadDetail.id, commentId);
     } catch (error) {
@@ -200,7 +200,7 @@ function asyncNeutralizeVoteComment(commentId) {
   return async (dispatch, getState) => {
     const { authUser, threadDetail } = getState();
     dispatch(showLoading());
-    dispatch(neutralizeVoteCommentActionCreator(commentId, authUser.id));
+    dispatch(neutralizeVoteCommentActionCreator(commentId, authUser?.id));
     try {
       await neutralizeCommentVote(threadDetail.id, commentId);
     } catch (error) {

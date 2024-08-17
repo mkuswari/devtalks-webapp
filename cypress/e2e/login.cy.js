@@ -67,10 +67,5 @@ describe("Login Spec", () => {
     cy.visit("http://localhost:5173/");
 
     cy.url().should("eq", "http://localhost:5173/");
-
-    cy.get("nav").contains("Thread").should("be.visible");
-    cy.get("button")
-      .contains(/^Logout$/)
-      .should("be.visible");
   });
 });

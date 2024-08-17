@@ -80,7 +80,7 @@ function asyncUpVoteThread(threadId) {
     const { authUser } = getState();
     dispatch(showLoading());
     dispatch(
-      upVoteThreadActionCreator({ threadId: threadId, userId: authUser.id })
+      upVoteThreadActionCreator({ threadId: threadId, userId: authUser?.id })
     );
     try {
       await upVoteThread(threadId);
@@ -96,7 +96,7 @@ function asyncDownVoteThread(threadId) {
     const { authUser } = getState();
     dispatch(showLoading());
     dispatch(
-      downVoteThreadActionCreator({ threadId: threadId, userId: authUser.id })
+      downVoteThreadActionCreator({ threadId: threadId, userId: authUser?.id })
     );
     try {
       await downVoteThread(threadId);
@@ -112,7 +112,7 @@ function asyncNeutralizeVoteThread(threadId) {
     const { authUser } = getState();
     dispatch(showLoading());
     dispatch(
-      neutralizeVoteThreadActionCreator({ threadId, userId: authUser.id })
+      neutralizeVoteThreadActionCreator({ threadId, userId: authUser?.id })
     );
     try {
       await neutralizeThreadVote(threadId);
